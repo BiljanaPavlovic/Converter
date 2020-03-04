@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import CurrancyRow from './CurrancyRow';
+import CurrencyRow from './CurrancyRow';
 
 const BASE_URL = 'https://api.exchangeratesapi.io/latest'
 
@@ -39,42 +39,42 @@ function App() {
 
   useEffect(() => {
     if (fromCurrency != null && toCurrency != null) {
-      fetch(`${BASE_URL}?base = ${fromCurrency} &symbols = ${toCurrency}`)
+      fetch(`${BASE_URL}?base = ${fromCurrency}&symbols = ${toCurrency}`)
         .then(res => res.json())
         .then(data => setExchangeRate(data.rates[toCurrency]))
     }
 
   }, [fromCurrency, toCurrency])
 
-  function hendleFromAmountChange(e) {
+  function handleFromAmountChange(e) {
     setAmount(e.target.value)
     setAmountInFromCurrency(true)
   }
 
-  function hendleToAmountChange(e) {
+  function handleToAmountChange(e) {
     setAmount(e.target.value)
     setAmountInFromCurrency(false)
   }
 
   return (
-    <div className="App">
+    <>
       <h1>Convert</h1>
-      <CurrancyRow
+      <CurrencyRow
         currencyOptions={currencyOptions}
         selectedCurrency={fromCurrency}
         onChangeCurrency={e => setFromCurrency(e.target.value)}
-        onChangeAmount={hendleFromAmountChange}
+        onChangeAmount={handleFromAmountChange}
         amount={fromAmount}
       />
       <div className="equals">=</div>
-      <CurrancyRow
+      <CurrencyRow
         currencyOptions={currencyOptions}
         selectedCurrency={toCurrency}
         onChangeCurrency={e => setToCurrency(e.target.value)}
-        onChangeAmount={hendleToAmountChange}
+        onChangeAmount={handleToAmountChange}
         amount={toAmount}
       />
-    </div>
+    </>
   );
 }
 

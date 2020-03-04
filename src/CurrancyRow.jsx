@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CurrancyRow(props) {
+export default function CurrencyRow(props) {
   const {
     currencyOptions,
     selectedCurrency,
